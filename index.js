@@ -17,10 +17,7 @@ function createEmployeeRecords(arr) {
     return createEmployeeRecord(elem);
   });
 }
-// let twoRows = [
-//     ["moe", "sizlak", "barkeep", 2],
-//     ["bartholomew", "simpson", "scamp", 3]
-//   ]
+
 
 function createTimeInEvent(recordObject, date) {
   let yourDate = date.split(" ");
@@ -77,27 +74,12 @@ function wagesEarnedOnDate(record, date) {
 // updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
 // console.log(wagesEarnedOnDate(cRecord, "0044-03-15"))
 
-// function allWagesFor(record) {
-//    console.log(record)
-//    let amount = []
-//    amount.push( wagesEarnedOnDate(record,record.timeInEvents[0].date))
-//     allWagesFor()
 
-// }
 
 const allWagesFor = function (record) {
   const eligibleDates = record.timeInEvents.map(function (e) {
     return e.date;
   });
-
-  // const payable = eligibleDates.reduce(
-  //   function (memo, d) {
-  //     return memo + wagesEarnedOnDate.call(this, d);
-  //   }.bind(this),
-  //   0
-  // ); // <== Hm, why did we need to add bind() there? We'll discuss soon!
-
-  // return payable;
   const payable = eligibleDates.reduce((accum, currentDate) => {
     return accum + wagesEarnedOnDate(record, currentDate);
   }, 0);
